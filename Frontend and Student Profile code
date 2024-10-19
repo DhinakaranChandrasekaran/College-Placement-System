@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <img src="sietlogo.jpg" width="100%" >
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="dka.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <div class="nav">
+        <a href="#">Home</a>
+        <a href="#">Departments</a>
+        <a href="#">Placements</a>
+        <a href="clgp1.html">Student Profiles</a>
+        <a href="clgp3up.html">Update form</a>
+        <a href="#">About us</a>
+        <a href="sietpl.html">SignUp</a>
+        <!-- Add more links as needed -->
+    </div>
+
+    <!-- Banner -->
+    <div class="banner">
+        ISRO's First Engineering College in India to Launch a Satellite!
+    </div>
+
+    <div class="gallery">
+        <img src="sietpic.jpg">
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>© 2024 Sri Shakthi Institute of Engineering and Technology. All rights reserved.</p>
+    </div>
+
+    <script>
+        // Dark Mode Toggle
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+        }
+    </script>
+
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Profile Login</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+          background-image: url("https://img.freepik.com/premium-photo/blurred-college-library-bookshelves-classroom-blurry-focus_877191-2469.jpg");
+          background-repeat: no-repeat;
+          background-size: cover;
+        .container {
+            margin-top: 50px;
+        }
+        .column-box {
+            border: 1px solid #ddd;
+            padding: 100px;
+            margin-bottom: 30px;
+            background-color: #fff;
+            text-align: center;
+            cursor: pointer;
+        }
+        .welcome-header {
+            text-align: center;
+            margin-top: 30px;
+        }
+        .batch-button {
+          text-align: center;
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+    <!-- First Page: Student Profile Login -->
+    <div class="container" id="login-page">
+        <h1 class="text-center">STUDENT PROFILE LOGIN</h1>
+        <div class="row mt-5">
+            <div class="col-md-6">
+                <div class="column-box" onclick="openLoginPage('student')">
+                    <h2>I am a Student</h2>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="column-box" onclick="openLoginPage('officer')">
+                    <h2>I am a Placement Officer</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Login Page for Students and Officers -->
+    <div class="container" id="student-login-page" style="display: none;">
+        <h1 class="text-center">Student Login</h1>
+        <form onsubmit="return handleLogin('student')">
+            <div class="mb-3">
+                <label for="student-email" class="form-label">Email address</label>
+                <input type="email" class="form-control" id="student-email" required>
+            </div>
+            <div class="mb-3">
+                <label for="student-password" class="form-label">Password</label>
+                <input type="password" class="form-control" id="student-password" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Login</button>
+            <button type="button" class="btn btn-secondary" onclick="goBack()">Back</button>
+        </form>
+    </div>
+
+    <div class="container" id="officer-login-page" style="display: none;">
+        <h1 class="text-center">Placement Officer Login</h1>
+        <form onsubmit="return handleLogin('officer')">
+            <div class="mb-3">
+                <label for="officer-email" class="form-label">Email address</label>
+                <input type="email" class="form-control" id="officer-email" required>
+            </div>
+            <div class="mb-3">
+                <label for="officer-password" class="form-label">Password</label>
+                <input type="password" class="form-control" id="officer-password" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Login</button>
+            <button type="button" class="btn btn-secondary" onclick="goBack()">Back</button>
+        </form>
+    </div>
+
+    <!-- Welcome Page -->
+    <div class="container" id="welcome-page" style="display: none;">
+        <h1 class="welcome-header">WELCOME <br> <br>COLLEGE PLACEMENT STUDENT PROFILES</h1>
+        <div class="text-center mt-5">
+            <button class="btn btn-secondary" onclick="goBackToLogin()">Previous Page</button>
+            <button class="btn btn-primary" onclick="openBatchPage()">Next Page</button>
+        </div>
+    </div>
+
+    <!-- Batch Selection Page -->
+    <div class="container" id="batch-page" style="display: none;">
+        <h1 class="text-center">Select Batch</h1>
+        <div class="text-center mt-5">
+            <button class="btn btn-info batch-button" onclick="openDepartmentPage('2022-2026')">2022-2026</button><br>
+            <button class="btn btn-info batch-button" onclick="openDepartmentPage('2023-2027')">2023-2027</button><br>
+            <button class="btn btn-info batch-button" onclick="openDepartmentPage('2024-2028')">2024-2028</button><br>
+            <button class="btn btn-secondary mt-3" onclick="goBackToWelcome()">Back</button>
+        </div>
+    </div>
+
+    <!-- Department Page (For example, 2022-2026) -->
+    <div class="container" id="department-page" style="display: none;">
+        <h1 class="text-center" id="batch-title"></h1>
+        <h3>Select Department</h3>
+        <ul class="list-group">
+            <li class="list-group-item"><a href="clgp2.html" onclick="openRegisterNumberPage('CSE')">Computer Science</a></li>
+            <li class="list-group-item"><a href="#" onclick="openRegisterNumberPage('ECE')">Electronics Engineering</a></li>
+            <li class="list-group-item"><a href="#" onclick="openRegisterNumberPage('MECH')">Mechanical Engineering</a></li>
+        </ul>
+        <button class="btn btn-secondary mt-3" onclick="goBackToBatch()">Back</button>
+    </div>
+
+    <!-- Script to manage navigation -->
+    <script>
+        // Show the appropriate login page
+        function openLoginPage(userType) {
+            document.getElementById('login-page').style.display = 'none';
+            if (userType === 'student') {
+                document.getElementById('student-login-page').style.display = 'block';
+            } else if (userType === 'officer') {
+                document.getElementById('officer-login-page').style.display = 'block';
+            }
+        }
+
+        // Simulate login (replace with backend validation)
+        function handleLogin(userType) {
+            alert(userType + ' logged in successfully!');
+            document.getElementById('student-login-page').style.display = 'none';
+            document.getElementById('officer-login-page').style.display = 'none';
+            document.getElementById('welcome-page').style.display = 'block';
+            return false; // Prevent form submission
+        }
+
+        function openBatchPage() {
+            document.getElementById('welcome-page').style.display = 'none';
+            document.getElementById('batch-page').style.display = 'block';
+        }
+
+        function openDepartmentPage(batch) {
+            document.getElementById('batch-page').style.display = 'none';
+            document.getElementById('department-page').style.display = 'block';
+            document.getElementById('batch-title').innerText = 'Batch ' + batch;
+        }
+
+        function openRegisterNumberPage(department) {
+            alert('You clicked ' + department + ' department. This would open register numbers page.');
+            // Redirect to the actual page for that department's register numbers (implement separately)
+        }
+
+        function goBack() {
+            document.getElementById('student-login-page').style.display = 'none';
+            document.getElementById('officer-login-page').style.display = 'none';
+            document.getElementById('login-page').style.display = 'block';
+        }
+
+        function goBackToLogin() {
+            document.getElementById('welcome-page').style.display = 'none';
+            document.getElementById('login-page').style.display = 'block';
+        }
+
+        function goBackToWelcome() {
+            document.getElementById('batch-page').style.display = 'none';
+            document.getElementById('welcome-page').style.display = 'block';
+        }
+
+        function goBackToBatch() {
+            document.getElementById('department-page').style.display = 'none';
+            document.getElementById('batch-page').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>College Placement Cell</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .student-photo {
+            max-width: 150px;
+            border-radius: 50%;
+        }
+        .upload-section {
+           
+         margin-top: 20px;
+        }
+        
+     body{
+        background-image: url("https://www.shutterstock.com/image-photo/blurred-image-background-many-books-600nw-1907870671.jpg");
+          background-repeat: no-repeat;
+          background-size: cover;
+     }
+     
+     
+    </style>
+</head>
+<body >
+    <div class="container">
+        <!-- Department Section -->
+        <div id="department-section">
+            <h1 class="mt-4 mb-4 text-center">College Placement Cell</h1>
+            <h3>Select Department</h3>
+            <div class="list-group">
+                <a href="#" class="list-group-item list-group-item-action" onclick="showStudents('CSE')">Computer Science</a>
+                <a href="#" class="list-group-item list-group-item-action" onclick="showStudents('ECE')">Electronics Engineering</a>
+                <a href="#" class="list-group-item list-group-item-action" onclick="showStudents('MECH')">Mechanical Engineering</a>
+            </div>
+        </div>
+
+        <!-- Student List Section -->
+        <div id="student-list-section" class="mt-4" style="display: none;">
+            <h3>Students in <span id="dept-name"></span> Department</h3>
+            <ul class="list-group" id="student-list"></ul>
+            <button class="btn btn-primary mt-3" onclick="goBack()">Back to Departments</button>
+        </div>
+
+        <!-- Student Profile Section -->
+        <div id="student-profile-section" class="mt-4" style="display: none;">
+            <h3>Student Profile</h3>
+            <div class="row">
+                <div class="col-md-3">
+                    <img id="student-photo" class="student-photo" src="https://via.placeholder.com/150" alt="Student Photo">
+                </div>
+                <div class="col-md-9">
+                    <p><strong>Name:</strong> <span id="student-name"></span></p>
+                    <p><strong>Address:</strong> <span id="student-address"></span></p>
+                    <p><strong>Date of Birth:</strong> <span id="student-dob"></span></p>
+                    <p><strong>Marks:</strong> <span id="student-marks"></span></p>
+                    <p><strong>Skills:</strong> <span id="student-skills"></span></p>
+                    <p><strong>CGPA:</strong> <span id="student-cgpa"></span></p>
+
+                    <!-- CGPA Semester Wise -->
+                    <h5>CGPA Semester Wise</h5>
+                    <ul id="student-cgpa-semester"></ul>
+
+                    <!-- Projects -->
+                    <h5>Projects</h5>
+                    <ul id="student-projects"></ul>
+
+                    <!-- Upload Section -->
+                    <div class="upload-section">
+                        <h5>Upload Files</h5>
+                        <div class="mb-3">
+                            <label for="upload-certificates" class="form-label">Upload Certificate</label>
+                            <input type="file" class="form-control" id="upload-certificates">
+                        </div>
+                        <div class="mb-3">
+                            <label for="upload-resume" class="form-label">Upload Resume (PDF)</label>
+                            <input type="file" class="form-control" id="upload-resume">
+                        </div>
+                        <div class="mb-3">
+                            <label for="upload-demo-video" class="form-label">Upload Demo Video</label>
+                            <input type="file" class="form-control" id="upload-demo-video">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button class="btn btn-primary mt-3" onclick="goBackToStudents()">Back to Students</button>
+        </div>
+    </div>
+
+    <script>
+        // Function to show students when a department is clicked
+        function showStudents(department) {
+            document.getElementById('department-section').style.display = 'none';
+            document.getElementById('student-list-section').style.display = 'block';
+            document.getElementById('dept-name').innerText = department;
+
+            // Example student data
+            const students = [
+                { regNo: department + '714023104001' },
+                { regNo: department + '714023104002' },
+                { regNo: department + '714023104003' },
+                { regNo: department + '714023104004' },
+                { regNo: department + '714023104005' },
+                { regNo: department + '714023104006' },
+                { regNo: department + '714023104007' },
+                { regNo: department + '714023104008' },
+                { regNo: department + '714023104009' },
+                { regNo: department + '714023104010' },
+                { regNo: department + '714023104011' },
+                { regNo: department + '714023104012' },
+                { regNo: department + '714023104013' },
+                { regNo: department + '714023104014' },
+                { regNo: department + '714023104015' },
+                { regNo: department + '714023104016' },
+                { regNo: department + '714023104016' },
+                { regNo: department + '714023104017' },
+                { regNo: department + '714023104018' },
+                { regNo: department + '714023104019' },
+                { regNo: department + '714023104020' },
+                { regNo: department + '714023104021' },
+                { regNo: department + '714023104022' },
+                { regNo: department + '714023104023' },
+                { regNo: department + '714023104024' },
+                { regNo: department + '714023104025' },
+                { regNo: department + '714023104026' },
+                { regNo: department + '714023104027' },
+                { regNo: department + '714023104028' },
+                { regNo: department + '714023104029' },
+                { regNo: department + '714023104030' },
+                { regNo: department + '714023104031' },
+                { regNo: department + '714023104032' },
+                { regNo: department + '714023104033' },
+                { regNo: department + '714023104034' },
+                { regNo: department + '714023104035' },
+                { regNo: department + '714023104036' },
+                { regNo: department + '714023104037' },
+                { regNo: department + '714023104038' },
+                { regNo: department + '714023104039' },
+                { regNo: department + '714023104040' },
+                { regNo: department + '714023104041' },
+                { regNo: department + '714023104042' },
+                { regNo: department + '714023104043' },
+                { regNo: department + '714023104044' },
+                { regNo: department + '714023104045' },
+                { regNo: department + '714023104046' },
+                { regNo: department + '714023104047' },
+                { regNo: department + '714023104048' },
+                { regNo: department + '714023104049' },
+                { regNo: department + '714023104050' },
+                { regNo: department + '714023104051' },
+                { regNo: department + '714023104052' },
+                { regNo: department + '714023104053' },
+                { regNo: department + '714023104054' },
+                { regNo: department + '714023104055' },
+                { regNo: department + '714023104056' },
+                { regNo: department + '714023104057' },
+                { regNo: department + '714023104058' },
+                { regNo: department + '7140231040L01' },
+
+            ];
+
+            const studentList = document.getElementById('student-list');
+            studentList.innerHTML = ''; // Clear previous list
+
+            students.forEach(student => {
+                const listItem = document.createElement('li');
+                listItem.classList.add('list-group-item');
+                listItem.innerHTML = `<a href="#" onclick="showProfile('${student.regNo}')">${student.regNo}</a>`;
+                studentList.appendChild(listItem);
+            });
+        }
+
+        // Function to show student profile
+        function showProfile(regNo) {
+        
+            document.getElementById('student-list-section').style.display = 'none';
+            document.getElementById('student-profile-section').style.display = 'block';
+
+            // Example student profile data
+            const student = {
+                photo: 'DKN.jpg',
+                name: 'Dhinakaran C',
+                address: 'D.NO:119, PUDUCOLONY, 15,VELAMPALAYAM, TIRUPUR -641 652.',
+                dob: '2005-04-18',
+                marks: '85%',
+                skills: ['Python', 'Java', 'Sql' , 'Flutter'],
+                cgpa: '8.5',
+                cgpaSemester: [8.4, 8.3, 8.3, 8.5, 8.6, 8.7, 8.8, 9.0],
+                projects: [
+                    { name: 'Stock Forecasting', link: '#' },
+                    { name: 'Hospital Management', link: '#' }
+                ]
+            };
+
+            // Populate the profile
+            document.getElementById('student-photo').src = student.photo;
+            document.getElementById('student-name').innerText = student.name;
+            document.getElementById('student-address').innerText = student.address;
+            document.getElementById('student-dob').innerText = student.dob;
+            document.getElementById('student-marks').innerText = student.marks;
+            document.getElementById('student-skills').innerText = student.skills.join(', ');
+            document.getElementById('student-cgpa').innerText = student.cgpa;
+
+            const cgpaSemesterList = document.getElementById('student-cgpa-semester');
+            cgpaSemesterList.innerHTML = '';
+            student.cgpaSemester.forEach((cgpa, index) => {
+                const listItem = document.createElement('li');
+                listItem.innerText = `Semester ${index + 1}: ${cgpa}`;
+                cgpaSemesterList.appendChild(listItem);
+            });
+
+            const projectList = document.getElementById('student-projects');
+            projectList.innerHTML = '';
+            student.projects.forEach(project => {
+                const listItem = document.createElement('li');
+                listItem.innerHTML = `<a href="${project.link}">${project.name}</a>`;
+                projectList.appendChild(listItem);
+            });
+        }
+
+        // Back button functionality
+        function goBack() {
+            document.getElementById('student-list-section').style.display = 'none';
+            document.getElementById('department-section').style.display = 'block';
+        }
+
+        function goBackToStudents() {
+            document.getElementById('student-profile-section').style.display = 'none';
+            document.getElementById('student-list-section').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Student Profile</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            
+          background-image: url("https://img.freepik.com/premium-photo/blurred-college-library-bookshelves-classroom-blurry-focus_877191-2469.jpg");
+          background-repeat: no-repeat;
+          background-size: cover;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, sans-serif;
+        }
+        .form-container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 800px;
+            background-size: cover;
+        }
+        .form-title {
+            text-align: center;
+            margin-bottom: 20px;
+            font-weight: bold;
+            font-size: 24px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .submit-btn {
+            text-align: center;
+        }
+        .submit-btn button {
+            width: 50%;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h2 class="form-title">Update Student Profile</h2>
+        <form id="updateProfileForm" enctype="multipart/form-data">
+            <!-- Register Number -->
+            <div class="form-group">
+                <label for="regNumber">Register Number</label>
+                <input type="text" class="form-control" id="regNumber" placeholder="Enter your register number" required>
+            </div>
+            <!-- Name -->
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" class="form-control" id="name" placeholder="Enter your full name" required>
+            </div>
+            <!-- Date of Birth -->
+            <div class="form-group">
+                <label for="dob">Date of Birth</label>
+                <input type="date" class="form-control" id="dob" required>
+            </div>
+            <!-- Batch Selection -->
+            <div class="form-group">
+                <label>Batch</label><br>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="batch" id="batch1" value="2022-2026" required>
+                    <label class="form-check-label" for="batch1">2022-2026</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="batch" id="batch2" value="2023-2024">
+                    <label class="form-check-label" for="batch2">2023-2024</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="batch" id="batch3" value="2025-2027">
+                    <label class="form-check-label" for="batch3">2025-2027</label>
+                </div>
+            </div>
+            <!-- Department Selection -->
+            <div class="form-group">
+                <label>Department</label><br>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="department" id="dept1" value="CSE" required>
+                    <label class="form-check-label" for="dept1">Computer Science Engineering</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="department" id="dept2" value="ECE">
+                    <label class="form-check-label" for="dept2">Electronics & Communication Engineering</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="department" id="dept3" value="EEE">
+                    <label class="form-check-label" for="dept3">Electrical & Electronics Engineering</label>
+                </div>
+            </div>
+            <!-- CGPA -->
+            <div class="form-group">
+                <label for="cgpa">CGPA (Semester I to Semester VIII)</label>
+                <input type="number" class="form-control" id="cgpa" step="0.01" min="0" max="10" placeholder="Enter your CGPA" required>
+            </div>
+            <!-- Upload Course Certificate -->
+            <div class="form-group">
+                <label for="courseCert">Upload Course Certificate</label>
+                <input type="file" class="form-control" id="courseCert" accept=".pdf,.jpg,.jpeg,.png" required>
+            </div>
+            <!-- Upload Project Resume -->
+            <div class="form-group">
+                <label for="resume">Upload Project Resume</label>
+                <input type="file" class="form-control" id="resume" accept=".pdf,.doc,.docx" required>
+            </div>
+            <!-- Upload Project Demo Video -->
+            <div class="form-group">
+                <label for="demoVideo">Upload Project Demo Video</label>
+                <input type="file" class="form-control" id="demoVideo" accept=".mp4,.avi,.mkv" required>
+            </div>
+            <!-- Submit Button -->
+            <div class="submit-btn">
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
